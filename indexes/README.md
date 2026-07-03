@@ -4,6 +4,7 @@
 
 | 索引 | 主题 |
 |------|------|
+| `routing.yaml` | AI/脚本使用的 canonical 领域知识路由表 |
 | `api.md` | 官方 API、`app.json`、路由、设备列表 |
 | `ui.md` | UI 控件、设计规范、真机 UI quirks |
 | `communication.md` | App/Side Service 通信、网络请求、ZML |

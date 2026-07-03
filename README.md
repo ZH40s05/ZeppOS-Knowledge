@@ -7,6 +7,8 @@
 | 入口 | 内容 |
 |------|------|
 | `indexes/README.md` | 中文分类索引 |
+| `indexes/routing.yaml` | AI/脚本使用的 canonical 路由表 |
+| `CONTRIBUTING.md` | 知识消费、回写和快照维护规则 |
 | `official/docs/zeppos-docs/` | ZeppOS 官方文档快照 |
 | `official/samples/zeppos-samples/` | ZeppOS 官方样例快照 |
 | `official/libraries/` | 许可证明确的官方推荐库快照 |
@@ -24,7 +26,7 @@
 
 ## AI 路由建议
 
-优先从 `indexes/README.md` 和 `manifest/sources.yaml` 判断来源类别，再读取最小必要文件：
+优先从 `indexes/README.md`、`indexes/routing.yaml` 和 `manifest/sources.yaml` 判断来源类别，再读取最小必要文件：
 
 1. 官方 API、`app.json`、设备列表：读 `official/docs/zeppos-docs/`。
 2. 示例工程：读 `official/samples/zeppos-samples/`。

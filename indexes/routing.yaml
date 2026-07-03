@@ -1,0 +1,89 @@
+version: 1
+purpose: ZeppOS-Knowledge 的 canonical 领域知识路由表。路径均相对本知识库根目录。
+
+defaults:
+  knowledge_root: .
+  rules:
+    - 先读 `indexes/README.md` 和本文件。
+    - 官方文档、官方样例、官方推荐库、社区库和自有知识均从本知识库读取。
+    - 外部宿主项目的 RE 原始证据链、项目 PROJECT.md 和历史 memory 只能作为 overlay，不是本知识库默认入口。
+    - 新的可复用结论写入 `self-knowledge/`，不要写入宿主工具 memory。
+
+sources:
+  - id: knowledge-index
+    class: knowledge-index
+    path: indexes/README.md
+    topics: [knowledge, index, route, official, self-knowledge, sample, library]
+    when: 任何 ZeppOS 文档、样例、库或自有知识查询的总入口。
+
+  - id: official-app-json
+    class: official
+    path: official/docs/zeppos-docs/docs/reference/app-json.mdx
+    topics: [app-json, module, page, shortcut, configVersion, appType, extType]
+    when: app.json 配置、module 声明、页面、shortcut、appType 或 workout extension 元数据。
+
+  - id: official-device-router
+    class: official
+    path: official/docs/zeppos-docs/docs/guides/framework/device/router.md
+    topics: [router, page, launch, navigation, back]
+    when: 小程序页面路由、普通页面跳转或 framework router 行为。
+
+  - id: official-device-api
+    class: official
+    path: official/docs/zeppos-docs/docs/reference/device-app-api/newAPI/
+    topics: [api, sensor, ui, widget, storage, media, app-service, app-access, ble, timer, fs]
+    when: 公开 ZeppOS 设备侧 API 行为或 `@zos/*` import。
+
+  - id: official-ui-widget
+    class: official
+    path: official/docs/zeppos-docs/docs/reference/device-app-api/newAPI/ui/
+    topics: [ui, widget, createWidget, getProperty, setProperty, SLIDE_SWITCH, CHECKBOX_GROUP, RADIO_GROUP]
+    when: UI widget 属性、widget 行为或官方控件 API。
+
+  - id: official-device-list
+    class: official
+    path: official/docs/zeppos-docs/docs/reference/related-resources/device-list.mdx
+    topics: [device, deviceSource, target, screen, model]
+    when: 设备 target key、deviceSource、屏幕或支持设备列表。
+
+  - id: official-samples
+    class: official-samples
+    path: official/samples/zeppos-samples/
+    topics: [sample, example, application, watchface, workout-extension]
+    when: 查找官方样例、示例项目结构、app-side/page/data-widget 示例。
+
+  - id: libraries-index
+    class: library-index
+    path: indexes/libraries.md
+    topics: [library, npm, zml, visual-logger, autogui, easy-ble, easy-draw, easy-storage, zeppos-fx, zabt, zaui]
+    when: 官方推荐库、社区库、自维护库或 npm 包选择。
+
+  - id: official-zml
+    class: official-library
+    path: official/libraries/zml/
+    topics: [zml, communication, network, side-service, ble]
+    when: ZML、通信封装、网络请求或 Device App 与 Side Service 通信。
+
+  - id: community-zeppos-fx
+    class: community-library
+    path: community/libraries/zeppos-fx/
+    topics: [zeppos-fx, animation, ui, widget, effect]
+    when: 查找 ZeppOS 简易动画库或社区 UI 动效实现。
+
+  - id: self-runtime-quirks
+    class: self-knowledge
+    path: self-knowledge/runtime-quirks.md
+    topics: [runtime, framework, ui, widget, animation, quirk, controls, SLIDE_SWITCH, setTimeout]
+    when: 跨项目可复用的 ZeppOS 真机行为、UI quirks 或 framework 差异。
+
+  - id: self-re-summary
+    class: self-knowledge
+    path: self-knowledge/re-summary.md
+    topics: [re-summary, hidden-api, native-page, wifi, sysprop, hmziplist, hardware, hid, ai-flex]
+    when: 普通开发者需要消费 RE 结论，而不是读取完整原始证据链。
+
+  - id: self-library-notes
+    class: self-knowledge
+    path: self-knowledge/libraries.md
+    topics: [library-notes, zml, zeppos-fx, adaptive-button, adaptive-ui, zabt, zaui]
+    when: 库选择、使用经验、兼容策略或自维护库说明。
