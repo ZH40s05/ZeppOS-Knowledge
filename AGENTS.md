@@ -9,12 +9,14 @@
 3. `indexes/routing.yaml` - AI/脚本使用的 canonical 路由表。
 4. `CONTRIBUTING.md` - 知识消费、回写和快照维护规则。
 5. `manifest/sources.yaml` - 官方快照、样例、库的来源、commit 和许可证。
-6. `self-knowledge/README.md` - 自有知识写作规则。
+6. `ai-workflow/README.md` - AI 协作 workflow、skill/tool 源文件和验证入口。
+7. `self-knowledge/README.md` - 自有知识写作规则。
 
 ## 边界
 
 - `official/` 和 `community/` 是快照区，只更新版本，不直接打补丁。
 - `self-knowledge/` 是 ZHAO 维护的中文可分享知识，记录真机差异、RE 摘要、库经验和跨项目复用结论。
+- `ai-workflow/` 是 AI 工具可复用 workflow、skill、脚本和 subagent 协议的 canonical 源。
 - 不保存固件包、密钥、账号、真实凭据或不可再分发素材。
 - 原始 RE 证据链可以留在宿主项目，进入本知识库时只写普通开发者可消费的摘要。
 

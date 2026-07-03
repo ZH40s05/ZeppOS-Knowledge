@@ -8,6 +8,7 @@
 2. 再读 `indexes/README.md` 选择分类。
 3. AI/脚本优先读 `indexes/routing.yaml` 做精确路由。
 4. 需要确认来源、commit、许可证时读 `manifest/sources.yaml`。
+5. 需要 AI 协作 workflow、skill/tool 脚本或 subagent 协议时读 `ai-workflow/README.md`。
 
 ## 写入位置
 
@@ -18,6 +19,7 @@
 | 库选择和使用经验 | `self-knowledge/libraries.md` |
 | 跨项目复用经验 | `self-knowledge/project-reuse.md` |
 | 官方文档/样例/库快照来源 | `manifest/sources.yaml` 和相关 `indexes/*.md` |
+| AI workflow、skill、工具脚本 | `ai-workflow/` |
 
 ## 不写入这里的内容
 

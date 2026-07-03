@@ -1,0 +1,7 @@
+interface:
+  display_name: "ZeppOS Vibe Coding"
+  short_description: "ZeppOS-Knowledge 路由、subagent 检索和自动存档"
+  default_prompt: "Use $zeppos-vibe-coding to work on this ZeppOS task with Chinese visible workflow, minimal context, ZeppOS-Knowledge routed docs/samples/libraries/self-knowledge, subagent evidence packets when searches are broad, project notes, and archived stages."
+
+policy:
+  allow_implicit_invocation: true
