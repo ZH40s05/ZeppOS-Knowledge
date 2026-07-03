@@ -5,8 +5,23 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$knowledgeMapPath = Join-Path $RepoRoot "ZeppOS-Knowledge\indexes\routing.yaml"
-$overlayMapPath = Join-Path $RepoRoot "docs\knowledge-map.yaml"
+function Resolve-ZeppOSRepoRoot([string]$StartPath) {
+  $resolved = (Resolve-Path -LiteralPath $StartPath).Path
+  $item = Get-Item -LiteralPath $resolved
+  if (-not $item.PSIsContainer) { $item = $item.Directory }
+  $dir = $item
+  while ($dir) {
+    if (Test-Path -LiteralPath (Join-Path $dir.FullName "ZeppOS-Knowledge\indexes\routing.yaml")) {
+      return $dir.FullName
+    }
+    $dir = $dir.Parent
+  }
+  return $resolved
+}
+
+$repo = Resolve-ZeppOSRepoRoot -StartPath $RepoRoot
+$knowledgeMapPath = Join-Path $repo "ZeppOS-Knowledge\indexes\routing.yaml"
+$overlayMapPath = Join-Path $repo "ZeppOS-Knowledge\monorepo\knowledge-map.yaml"
 
 function Get-RoutePriority {
   param([string]$Class)
@@ -37,7 +52,7 @@ function Convert-RoutePath {
   if (-not $Prefix) {
     return $Path
   }
-  if ($Path -match '^(?:[A-Za-z]:|/|https?://|ZeppOS-Knowledge/|docs/|ZeppOS_RE/|\.claude/)') {
+  if ($Path -match '^(?:[A-Za-z]:|/|https?://|ZeppOS-Knowledge/|ZeppOS_RE/|\.claude/)') {
     return $Path
   }
   return ($Prefix.TrimEnd("/", "\") + "/" + $Path).Replace("\", "/")

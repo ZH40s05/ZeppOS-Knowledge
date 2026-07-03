@@ -221,7 +221,7 @@ git add -- .gitmodules <path>
 归档动作：
 
 1. 移动目录。
-2. 更新 `docs/project-index.md`。
+2. 更新 `ZeppOS-Knowledge/monorepo/project-index.md`。
 3. 检查 `app.json`、资源路径和文档链接是否因移动失效。
 4. 运行必要构建。
 5. 精确暂存移动和索引文件。

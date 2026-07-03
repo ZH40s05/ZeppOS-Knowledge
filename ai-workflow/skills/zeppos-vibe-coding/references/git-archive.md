@@ -1,6 +1,6 @@
 # Git Archive
 
-Follow `ZeppOS-Knowledge/ai-workflow/git-archive-workflow.md` when present. Root `docs/git-archive-workflow.md` is only a compatibility pointer. These are the hard defaults:
+Follow `ZeppOS-Knowledge/ai-workflow/git-archive-workflow.md` when present. Root `docs/` has been merged into `ZeppOS-Knowledge/`. These are the hard defaults:
 
 - Commit and push after each verified stage unless the user says `no-commit`, `auto-commit: off`, `no-push`, or `auto-push: off`.
 - Never use `git add .`, `git add -A`, `commit -am`, force push, reset, rebase, or amend automatically.

@@ -9,12 +9,35 @@
   [string]$Validation = "",
   [string]$Archive = "",
   [string]$Dirty = "",
-  [string]$Log = ""
+  [string]$Log = "",
+  [string]$StatusDir = ""
 )
 
 $ErrorActionPreference = "Stop"
-$repo = (Resolve-Path -LiteralPath $RepoRoot).Path
-$dir = Join-Path $repo "docs\vibe-coding"
+function Resolve-ZeppOSRepoRoot([string]$StartPath) {
+  $resolved = (Resolve-Path -LiteralPath $StartPath).Path
+  $item = Get-Item -LiteralPath $resolved
+  if (-not $item.PSIsContainer) { $item = $item.Directory }
+  $dir = $item
+  while ($dir) {
+    if (Test-Path -LiteralPath (Join-Path $dir.FullName "ZeppOS-Knowledge\indexes\routing.yaml")) {
+      return $dir.FullName
+    }
+    $dir = $dir.Parent
+  }
+  return $resolved
+}
+
+$repo = Resolve-ZeppOSRepoRoot -StartPath $RepoRoot
+if ($StatusDir) {
+  if ([System.IO.Path]::IsPathRooted($StatusDir)) {
+    $dir = $StatusDir
+  } else {
+    $dir = Join-Path $repo $StatusDir
+  }
+} else {
+  $dir = Join-Path $repo "ZeppOS-Knowledge\ai-workflow\status"
+}
 $logDir = Join-Path $dir "logs"
 New-Item -ItemType Directory -Force $logDir | Out-Null
 

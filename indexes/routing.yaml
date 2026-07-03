@@ -5,8 +5,8 @@ defaults:
   knowledge_root: .
   rules:
     - 先读 `indexes/README.md` 和本文件。
-    - 官方文档、官方样例、官方推荐库、社区库、自有知识和 AI workflow/tool 源文件均从本知识库读取。
-    - 外部宿主项目的 RE 原始证据链、项目 PROJECT.md 和历史 memory 只能作为 overlay，不是本知识库默认入口。
+    - 官方文档、官方样例、官方推荐库、社区库、自有知识、AI workflow/tool 源文件、运行态状态和宿主 overlay 均从本知识库读取。
+    - 外部宿主项目的 RE 原始证据链、项目 PROJECT.md 和历史 memory 只能通过 `monorepo/knowledge-map.yaml` overlay 进入，不是默认入口。
     - 新的可复用结论写入 `self-knowledge/`，不要写入宿主工具 memory。
 
 sources:
@@ -27,6 +27,18 @@ sources:
     path: ai-workflow/skills/zeppos-vibe-coding/SKILL.md
     topics: [zeppos-vibe-coding, skill, scripts, Route-ZeppOSDocs, Update-VibeCodingStatus, Record-ZeppOSFinding, Test-ZeppOSWorkflowConsolidation, zeus]
     when: 安装或维护 ZeppOS Vibe Coding skill、运行路由/状态/知识回写/集中化验证脚本。
+
+  - id: ai-workflow-status
+    class: ai-workflow
+    path: ai-workflow/status/STATUS.md
+    topics: [status, current-task, log, vibe-coding, progress, validation, archive]
+    when: 查看当前 AI 任务状态、下一步、验证、存档或未纳入脏改动。
+
+  - id: monorepo-overlay
+    class: monorepo-overlay
+    path: monorepo/README.md
+    topics: [monorepo, project-index, knowledge-map, overlay, local-projects, route]
+    when: 查当前宿主仓库项目索引、跨项目定位、RE 原始证据链或历史 memory overlay。
 
   - id: official-app-json
     class: official

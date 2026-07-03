@@ -1,6 +1,6 @@
 # 知识路由
 
-先使用 `ZeppOS-Knowledge/indexes/routing.yaml` 作为 ZeppOS 领域知识 canonical 路由表。`docs/knowledge-map.yaml` 只作为当前 monorepo 的本地 overlay，用于项目文档、RE 原始证据链和历史 Claude memory。
+先使用 `ZeppOS-Knowledge/indexes/routing.yaml` 作为 ZeppOS 领域知识 canonical 路由表。`ZeppOS-Knowledge/monorepo/knowledge-map.yaml` 只作为当前 monorepo 的本地 overlay，用于项目文档、RE 原始证据链和历史 Claude memory。
 
 如果路由需要搜索多个大型来源，或需要跨项目查找案例，先读取 `ZeppOS-Knowledge/ai-workflow/SUBAGENTS.md`。工具支持时，把检索任务分派给 subagent/explorer；subagent 应返回压缩证据包，不返回原始搜索输出。
 

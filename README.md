@@ -15,6 +15,8 @@
 | `community/libraries/` | 许可证明确的社区库快照 |
 | `self-knowledge/` | ZHAO 维护的中文自有知识 |
 | `ai-workflow/` | AI 协作 workflow、skill 源文件、工具脚本和验证入口 |
+| `ai-workflow/status/` | 用户可见运行态状态板和每日日志 |
+| `monorepo/` | 当前宿主仓库的项目索引和 overlay 路由 |
 | `manifest/sources.yaml` | 快照来源、commit、许可证和本地路径 |
 
 ## 使用原则
@@ -35,3 +37,5 @@
 4. 真机差异和 runtime quirks：读 `self-knowledge/runtime-quirks.md`。
 5. RE 结论的开发使用方式：读 `self-knowledge/re-summary.md`。
 6. AI 协作、subagent、自动 Git、skill/tool 脚本：读 `ai-workflow/README.md`。
+7. 当前任务状态：读 `ai-workflow/status/STATUS.md`。
+8. 跨项目索引或宿主 overlay：读 `monorepo/README.md`。

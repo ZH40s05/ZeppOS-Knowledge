@@ -1,14 +1,14 @@
 # 工作流可见化
 
-通过 `docs/vibe-coding/` 让用户用中文看到 AI 当前在做什么、下一步做什么、准备修改和存档什么。
+通过 `ZeppOS-Knowledge/ai-workflow/status/` 让用户用中文看到 AI 当前在做什么、下一步做什么、准备修改和存档什么。
 
 ## 必备文件
 
-- `docs/vibe-coding/README.md`: 用户入口。
-- `docs/vibe-coding/STATUS.md`: 当前任务状态板。
-- `docs/vibe-coding/PROTOCOL.md`: 兼容入口；canonical 协议在 `ZeppOS-Knowledge/ai-workflow/PROTOCOL.md`。
-- `docs/vibe-coding/SUBAGENTS.md`: 兼容入口；canonical 协议在 `ZeppOS-Knowledge/ai-workflow/SUBAGENTS.md`。
-- `docs/vibe-coding/logs/YYYY-MM-DD.md`: 每日阶段日志。
+- `ZeppOS-Knowledge/ai-workflow/status/README.md`: 用户入口。
+- `ZeppOS-Knowledge/ai-workflow/status/STATUS.md`: 当前任务状态板。
+- `ZeppOS-Knowledge/ai-workflow/PROTOCOL.md`: 可见化协议。
+- `ZeppOS-Knowledge/ai-workflow/SUBAGENTS.md`: subagent 检索委派协议。
+- `ZeppOS-Knowledge/ai-workflow/status/logs/YYYY-MM-DD.md`: 每日阶段日志。
 
 ## 必须更新的节点
 

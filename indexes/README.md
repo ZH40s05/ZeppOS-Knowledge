@@ -14,6 +14,8 @@
 | `samples.md` | 官方样例分类入口 |
 | `libraries.md` | 官方推荐库、社区库、自维护库 |
 | `../ai-workflow/README.md` | AI 协作 workflow、skill/tool 和验证入口 |
+| `../ai-workflow/status/STATUS.md` | 当前 AI 运行态 |
+| `../monorepo/README.md` | 宿主仓库项目索引和 overlay 路由 |
 
 结论类型标记：
 

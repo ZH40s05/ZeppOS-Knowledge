@@ -9,7 +9,7 @@ description: ZeppOS monorepo and miniapp/widget/library/RE development workflow.
 
 ## 快速启动
 
-1. 大范围读取前，用中文更新 `docs/vibe-coding/STATUS.md`。优先使用本 skill 的 `scripts/Update-VibeCodingStatus.ps1`；在仓库内也可运行 canonical 副本 `ZeppOS-Knowledge/ai-workflow/skills/zeppos-vibe-coding/scripts/Update-VibeCodingStatus.ps1`。
+1. 大范围读取前，用中文更新 `ZeppOS-Knowledge/ai-workflow/status/STATUS.md`。优先使用本 skill 的 `scripts/Update-VibeCodingStatus.ps1`；在仓库内也可运行 canonical 副本 `ZeppOS-Knowledge/ai-workflow/skills/zeppos-vibe-coding/scripts/Update-VibeCodingStatus.ps1`。
 2. 从当前目录运行本 skill 的 `scripts/Get-ZeppOSContext.ps1`。
 3. 读取返回的根 `AGENTS.md` 和最近的项目级 `AGENTS.md`。
 4. 若需要 API/行为知识，运行本 skill 的 `scripts/Route-ZeppOSDocs.ps1 -Query "<question>"`，默认路由到 `ZeppOS-Knowledge/`。
@@ -18,12 +18,12 @@ description: ZeppOS monorepo and miniapp/widget/library/RE development workflow.
 7. 编辑文件前，在 `STATUS.md` 写明预计影响文件和下一步。
 8. 发现可复用新结论时，用本 skill 的 `scripts/Record-ZeppOSFinding.ps1` 记录到 `ZeppOS-Knowledge/self-knowledge/`，或直接编辑路由到的文档。
 9. 项目特定上下文变化时，用本 skill 的 `scripts/New-ZeppOSProjectDoc.ps1` 创建/更新项目 `PROJECT.md`。
-10. 验证和存档后，更新 `STATUS.md` 并追加 `docs/vibe-coding/logs/YYYY-MM-DD.md`。
+10. 验证和存档后，更新 `STATUS.md` 并追加 `ZeppOS-Knowledge/ai-workflow/status/logs/YYYY-MM-DD.md`。
 11. 阶段验证完成后，默认精确 commit 并 push，除非用户说 `no-commit` 或 `auto-push: off`。
 
 ## 用户可见工作流
 
-实质性工作前读取 `references/workflow-visibility.md`。用户固定中文驾驶舱是 `docs/vibe-coding/STATUS.md` 和 `docs/vibe-coding/logs/`；完整 workflow、subagent 协议和 skill/tool 源文件以 `ZeppOS-Knowledge/ai-workflow/` 为准，不要把根 `docs/vibe-coding/` 的兼容页当作主入口。
+实质性工作前读取 `references/workflow-visibility.md`。用户固定中文驾驶舱是 `ZeppOS-Knowledge/ai-workflow/status/STATUS.md` 和 `ZeppOS-Knowledge/ai-workflow/status/logs/`；完整 workflow、subagent 协议和 skill/tool 源文件以 `ZeppOS-Knowledge/ai-workflow/` 为准。
 
 当搜索资料或查找案例会膨胀上下文时，读取仓库内 `ZeppOS-Knowledge/ai-workflow/SUBAGENTS.md`，让 subagent/explorer 返回中文证据包；主 agent 保留最终判断、编辑、验证和 Git 存档责任。
 

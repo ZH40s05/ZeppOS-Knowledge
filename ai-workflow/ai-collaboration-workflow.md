@@ -21,7 +21,7 @@
 |------|----------|----------|
 | S | 单文件修复、文案、资源路径、小 UI 调整 | 目标文件 + 邻近配置 |
 | M | 单项目功能、构建失败、页面联动 | 项目根配置 + 相关页面/工具模块 |
-| L | 跨项目复用、迁移、架构整理、Git 归档 | `docs/project-index.md` + 精确搜索结果 |
+| L | 跨项目复用、迁移、架构整理、Git 归档 | `ZeppOS-Knowledge/monorepo/project-index.md` + 精确搜索结果 |
 | RE | 固件/隐藏 API/系统研究 | `ZeppOS-Knowledge/self-knowledge/re-summary.md` + 必要时 `ZeppOS_RE/AGENTS.md` 和对应研究文档 |
 
 默认从 S 或 M 开始。只有证据显示需要更多上下文时再升级。
@@ -29,10 +29,10 @@
 ## 每个任务的启动顺序
 
 1. 判断目标路径和项目类型。
-2. 更新 `docs/vibe-coding/STATUS.md`，让用户看到当前任务、边界和下一步。
+2. 更新 `ZeppOS-Knowledge/ai-workflow/status/STATUS.md`，让用户看到当前任务、边界和下一步。
 3. 读取根 `AGENTS.md` 和最近的目录级 `AGENTS.md`。
 4. 读取目标项目的 `app.json`、`package.json` 或入口文件。
-5. 需要 ZeppOS 知识或 AI workflow/tool 时，先读 `ZeppOS-Knowledge/indexes/routing.yaml` 和 `ZeppOS-Knowledge/indexes/README.md`；`docs/knowledge-map.yaml` 只作为本仓库 RE/项目文档 overlay。
+5. 需要 ZeppOS 知识或 AI workflow/tool 时，先读 `ZeppOS-Knowledge/indexes/routing.yaml` 和 `ZeppOS-Knowledge/indexes/README.md`；`ZeppOS-Knowledge/monorepo/knowledge-map.yaml` 只作为本仓库 RE/项目文档 overlay。
 6. 用 `rg` 精确搜索符号、页面名、appId、资源名。
 7. 只打开命中的相关文件。
 8. 编辑前更新 `STATUS.md` 的预计影响文件。
@@ -52,14 +52,12 @@
 
 ## 用户可见状态
 
-用户固定阅读 `docs/vibe-coding/`：
+用户固定阅读 `ZeppOS-Knowledge/ai-workflow/status/`：
 
 | 文件 | 用途 |
 |------|------|
-| `README.md` | 说明如何观察 AI 运行态，并指向 canonical workflow |
+| `README.md` | 说明如何观察 AI 运行态 |
 | `STATUS.md` | 当前任务状态板 |
-| `PROTOCOL.md` | 兼容入口，指向 `ZeppOS-Knowledge/ai-workflow/PROTOCOL.md` |
-| `SUBAGENTS.md` | 兼容入口，指向 `ZeppOS-Knowledge/ai-workflow/SUBAGENTS.md` |
 | `logs/YYYY-MM-DD.md` | 每日阶段日志 |
 
 `STATUS.md` 需要回答：当前在做什么、影响范围是什么、下一步是什么、验证和存档状态是什么、哪些脏改动未纳入本轮。
@@ -81,7 +79,7 @@
 | `.claude/memory/build-conventions.md` | Zeus 命令、设备 target、历史构建约定不确定时 |
 | `.claude/memory/hidden-apis.md` | 隐藏 API、aiFlex、原生桥相关任务 |
 | `.claude/memory/native-pages.md` | 原生 Screen 跳转任务 |
-| `.claude/memory/project-glossary.md` | `docs/project-index.md` 不足以定位项目时 |
+| `.claude/memory/project-glossary.md` | `ZeppOS-Knowledge/monorepo/project-index.md` 不足以定位项目时 |
 
 新沉淀的长期知识优先写入 `ZeppOS-Knowledge/self-knowledge/` 或项目 `PROJECT.md`。`.claude/memory/` 作为历史资料保留，不再作为唯一真源扩张。
 

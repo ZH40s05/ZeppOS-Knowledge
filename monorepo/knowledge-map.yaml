@@ -1,0 +1,65 @@
+version: 4
+purpose: ZeppOS monorepo 宿主 overlay。ZeppOS 领域知识 canonical 路由在 `ZeppOS-Knowledge/indexes/routing.yaml`；本文件随 Knowledge 集中保存，不再放在根 docs。
+
+canonical_knowledge_map: ZeppOS-Knowledge/indexes/routing.yaml
+
+rules:
+  - 官方文档、官方样例、官方推荐库、社区库和自有知识优先从 `ZeppOS-Knowledge/` 读取。
+  - 本文件只记录宿主仓库特有入口：项目文档、RE 原始证据链和历史 Claude memory。
+  - 普通开发者消费 RE 结论时，先读 `ZeppOS-Knowledge/self-knowledge/re-summary.md`；只有需要证据链时才读 `ZeppOS_RE/docs/`。
+  - `.claude/memory/` 只作为历史迁移输入，不作为新结论写入点。
+
+local_overlays:
+  - id: project-doc-guide
+    class: project-docs
+    path: ZeppOS-Knowledge/ai-workflow/project-docs-guide.md
+    topics: [project-doc, PROJECT.md, app-notes, local-docs, per-project]
+    when: 创建或更新某个具体小程序/组件/库项目的 PROJECT.md。
+
+  - id: re-hidden-apis
+    class: reverse-engineering
+    path: ZeppOS_RE/docs/zeppflow_hidden_apis.md
+    topics: [hidden-api, ai-flex, unsafe, ZeppFlow, NATIVE, AppService, system-uri, flex-uri, speech, STT, TTS]
+    when: 需要宿主仓库原始 RE 证据链：隐藏 API、aiFlex、unsafe modules、ZeppFlow 或特权系统控制。
+
+  - id: re-native-pages
+    class: reverse-engineering
+    path: ZeppOS_RE/docs/map_screen_navigation_probe.md
+    topics: [native-page, Screen, launchApp, MapPoiFirstLevelScreen, CompassScreen, map, POI, GPS, shortcut]
+    when: 需要宿主仓库原始 RE 证据链：原生 Screen 跳转、map/POI 页面、launchApp native mode。
+
+  - id: re-wifi-feasibility
+    class: reverse-engineering
+    path: ZeppOS_RE/docs/wifi_miniapp_feasibility.md
+    topics: [wifi, wlan, blufi, network, checkNative, feasibility, sandbox]
+    when: 需要宿主仓库原始 RE 证据链：小程序是否能扫描/连接 WiFi 或访问 WiFi 模块。
+
+  - id: re-wifi-research
+    class: reverse-engineering
+    path: ZeppOS_RE/docs/wifi_research.md
+    topics: [wifi, blufi, sysprop, credential, network.wifi.list.keys, injection, RAM-authority]
+    when: 需要宿主仓库原始 RE 证据链：WiFi credentials、BluFi、sysprop 注入或系统重置行为。
+
+  - id: re-sysprop
+    class: reverse-engineering
+    path: ZeppOS_RE/docs/sysprop_reference.md
+    topics: [sysprop, HmZiplist, property, hash, storage, offline-map, network.blufi]
+    when: 需要宿主仓库原始 RE 证据链：sysprop 格式、HmZiplist、property hash 或系统属性。
+
+  - id: re-hardware
+    class: reverse-engineering
+    path: ZeppOS_RE/docs/hardware_reference.md
+    topics: [hardware, soc, chip, Balance, Active2, T-Rex3, WiFi-hardware, BLE]
+    when: 需要宿主仓库原始 RE 证据链：设备硬件能力、SoC、WiFi 芯片、BLE 或设备族差异。
+
+  - id: claude-hidden-memory
+    class: historical-memory
+    path: .claude/memory/hidden-apis.md
+    topics: [legacy-memory, hidden-api, runtime-quirk, quick-reference]
+    when: 审计或迁移历史 Claude memory。不要作为新发现的最终来源。
+
+  - id: claude-native-memory
+    class: historical-memory
+    path: .claude/memory/native-pages.md
+    topics: [legacy-memory, native-page, Screen, quick-reference]
+    when: 审计或迁移历史 Claude memory。不要作为新发现的最终来源。

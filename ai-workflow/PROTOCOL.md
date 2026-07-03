@@ -1,16 +1,16 @@
 # 用户可见 Vibe Coding 协议
 
-本协议的目标是让仓库里的 AI 协作过程始终可观察、可解释、可恢复。聊天记录不是唯一事实来源；宿主仓库内 `docs/vibe-coding/` 必须反映当前运行状态。
+本协议的目标是让仓库里的 AI 协作过程始终可观察、可解释、可恢复。聊天记录不是唯一事实来源；`ZeppOS-Knowledge/ai-workflow/status/` 必须反映当前运行状态。
 
 ## 固定文件
 
 | 文件 | 用途 |
 |------|------|
-| `docs/vibe-coding/README.md` | 用户入口和阅读说明，指向本目录 canonical 文档 |
-| `docs/vibe-coding/STATUS.md` | 当前任务状态板 |
+| `ZeppOS-Knowledge/ai-workflow/status/README.md` | 用户入口和阅读说明 |
+| `ZeppOS-Knowledge/ai-workflow/status/STATUS.md` | 当前任务状态板 |
 | `ZeppOS-Knowledge/ai-workflow/SUBAGENTS.md` | subagent 检索委派规则 |
 | `ZeppOS-Knowledge/CONTRIBUTING.md` | 知识消费与回写规则 |
-| `docs/vibe-coding/logs/YYYY-MM-DD.md` | 当日阶段日志 |
+| `ZeppOS-Knowledge/ai-workflow/status/logs/YYYY-MM-DD.md` | 当日阶段日志 |
 
 ## 状态更新时机
 
