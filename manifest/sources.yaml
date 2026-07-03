@@ -1,0 +1,101 @@
+﻿version: 1
+snapshot_date: 2026-07-03
+policy:
+  strategy: version-snapshot
+  copy_rules:
+    - Do not copy .git directories.
+    - Do not copy node_modules, dist, build, .docusaurus, .cache, or .zpk files.
+    - Keep upstream licenses and notices.
+    - Do not edit vendored official or third-party snapshots directly.
+    - Write explanations and local conclusions to self-knowledge.
+
+sources:
+  - id: zeppos-docs
+    class: official-docs
+    title: ZeppOS 官方文档
+    source_url: https://github.com/zepp-health/zeppos-docs.git
+    source_commit: 047fbbe778ef5fee70ee53d04023f90b67a2213c
+    snapshot_date: 2026-07-03
+    license: Apache-2.0
+    distribution: full-copy
+    local_path: official/docs/zeppos-docs
+
+  - id: zeppos-samples
+    class: official-samples
+    title: ZeppOS 官方样例
+    source_url: https://github.com/zepp-health/zeppos-samples.git
+    source_commit: 7cee748bb774512b0682cec8bb1209a89e02a351
+    snapshot_date: 2026-07-03
+    license: Apache-2.0
+    distribution: full-copy
+    local_path: official/samples/zeppos-samples
+
+  - id: zml
+    class: official-library
+    title: ZML
+    source_url: https://github.com/zepp-health/zml.git
+    source_commit: 97fd18606e9c72dc010f42856f4176ef4e9ad040
+    snapshot_date: 2026-07-03
+    license: Apache-2.0
+    distribution: full-copy
+    local_path: official/libraries/zml
+
+  - id: visual-logger
+    class: official-library
+    title: ZeppOS Visual Logger
+    source_url: https://github.com/zepp-health/visual-logger.git
+    source_commit: 03b654e81998ed714b8a7abe1d2e957fcec0fbf4
+    snapshot_date: 2026-07-03
+    license: unknown
+    distribution: index-only
+    local_path:
+
+  - id: autogui
+    class: official-library
+    title: AutoGUI
+    source_url: https://github.com/zepp-health/autogui.git
+    source_commit: 26afc42914686cf69c8b5b520035756ec5549f86
+    snapshot_date: 2026-07-03
+    license: unknown
+    distribution: index-only
+    local_path:
+
+  - id: easy-ble
+    class: official-library
+    title: easy-ble
+    source_url: https://github.com/zepp-health/easy-ble.git
+    source_commit: ee25503ec3e325a44a1a3b0dd4ebcaf0f0a97e9c
+    snapshot_date: 2026-07-03
+    license: unknown
+    distribution: index-only
+    local_path:
+
+  - id: easy-draw
+    class: official-library
+    title: easy-draw
+    source_url: https://github.com/zepp-health/easy-draw.git
+    source_commit: 552ac613f5af30ab2e4ca88b4b102d36795b309e
+    snapshot_date: 2026-07-03
+    license: unknown
+    distribution: index-only
+    local_path:
+
+  - id: easy-storage
+    class: official-library
+    title: easy-storage
+    source_url: https://github.com/zepp-health/easy-storage.git
+    source_commit: 4fa64c5dde1bbec6ef5db149f33474947c3aef54
+    snapshot_date: 2026-07-03
+    license: unknown
+    distribution: index-only
+    local_path:
+
+  - id: zeppos-fx
+    class: community-library
+    title: zeppos-fx
+    source_url: https://github.com/XiaomaiTX/zeppos-fx.git
+    source_commit: 4830cbc7d5cff19765a631328354fad313e25bc2
+    snapshot_date: 2026-07-03
+    license: MIT
+    distribution: full-copy
+    local_path: community/libraries/zeppos-fx

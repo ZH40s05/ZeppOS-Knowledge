@@ -1,0 +1,54 @@
+---
+title: 3. 模拟器预览
+sidebar_label: 3. 模拟器预览
+---
+
+在这一步中，我们会完成以下任务
+
+- 安装 Zepp OS 模拟器
+- 安装 Amazfit Balance 手表设备模拟器
+- 在模拟器预览 Zepp OS 小程序
+
+## 安装并运行 Zepp OS 模拟器
+
+根据系统版本，下载对应的模拟器安装包，根据提示进行安装，[模拟器下载](../tools/simulator/download.md)。
+
+安装完成后运行模拟器，点击模拟器图标，即可运行。
+
+以 Windows 举例，双击模拟器图标即可启动模拟器。
+
+![simulator_icon.jpg](/img/simulator/simulator_icon.jpg)
+
+:::info
+模拟器常见问题参考 [模拟器常见问题](../faq/simulator-faq.md)
+:::
+
+## 安装手表设备模拟器
+
+启动模拟器后，我们会看到下图这样的界面。
+
+点击下图标记 「7」 位置的下载按钮，进入手表设备模拟器下载列表界面
+
+![desk.png](/img/simulator/interface.png)
+
+定位到 Balance 模拟器，并且点击下载按钮
+
+![download.jpg](/img/docs/quick-start/simulator_download.jpg)
+
+下载完成后，点击顶部 Simulator 图标或者模拟器下拉框选中 Amazfit Balance，启动手表设备模拟器。
+
+![device_simulator.jpg](/img/docs/quick-start/simulator_run.jpg)
+
+更多模拟器的介绍，请参考 [模拟器 - 使用说明](../../guides/tools/simulator/index.md)
+
+## 模拟器预览
+
+我们使用终端进入到 `hello-world` 目录下，执行 [`zeus dev` 编译预览命令](../../guides/tools/cli/index.md#zeus-dev-编译预览模拟器)，Zeus CLI 会对项目代码进行编译并通过模拟器预览。
+
+```sh
+zeus dev
+```
+
+等待小程序安装完成，就可以在「Amazfit Balance 设备模拟器」中预览到我们的 `hello-world` 小程序。
+
+![hello world 预览](/img/docs/quick-start/simulator_project_preview.jpg)

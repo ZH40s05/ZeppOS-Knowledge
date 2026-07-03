@@ -1,0 +1,59 @@
+---
+title: 5. 真机预览
+sidebar_label: 5. 真机预览
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+在这一章节中，我们会完成以下任务
+
+- 手机安装 Zepp App 并注册 Zepp 账号
+  - 根据提示完成手表设备绑定
+- `zeus preview` 命令编译生成小程序二维码
+- Zepp App 开启开发者模式，扫码安装小程序
+
+## 手机安装 Zepp App 并注册 Zepp 账号
+
+使用手机扫描二维码，安装 Zepp App。
+
+<img src={useBaseUrl('/img/docs/quick-start/download_zepp.jpg')} width="300" title="download_zepp" />
+
+在 Zepp App 中注册并登录 Zepp 账号，按照提示完成搭载 Zepp OS 手表设备的绑定。
+
+## 使用 zeus preview 命令编译生成小程序二维码
+
+在 `hello-world` 小程序根目录执行 `zeus preview` 命令。
+
+编译完成后在终端生成二维码图片
+
+## 开发者模式开启方式，扫码安装小程序
+
+- 开启
+  - 前往「我的」 => 「设置」 => 「关于」，连续点击 Zepp 图标 7 次直至弹窗弹出
+- 关闭
+  - 前往「我的」 => 「设置」，取消开发者模式选项
+
+![devInfo.png](/img/zh-cn/docs/watchface/lesson/dev_info.jpg)
+
+使用「扫一扫」功能，扫描二维码即可安装至设备。
+
+![installAppScanCode.png](/img/zh-cn/docs/watchface/lesson/install_app_scan_code.jpg)
+
+---
+
+恭喜你 🎉🎉🎉，完成了第一款 Zepp OS 小程序创建、开发、调试、预览流程。
+
+想了解更多关于框架、API 的详细内容，请参考：
+
+- [小程序整体架构介绍](../architecture/arc.mdx)
+- [小程序目录结构介绍](../architecture/folder-structure.mdx)
+- [小程序框架 - 设备应用](../framework/device/intro.md)
+- [小程序配置 app.json](../../reference/app-json.mdx)
+
+想了解更多小程序开发调试技巧，请参考：
+
+- [小程序调试技巧](../../guides/best-practice/debug.mdx)
+
+想了解小程序的发布，请参考：
+
+- [发布应用](../../distribute/index.md)

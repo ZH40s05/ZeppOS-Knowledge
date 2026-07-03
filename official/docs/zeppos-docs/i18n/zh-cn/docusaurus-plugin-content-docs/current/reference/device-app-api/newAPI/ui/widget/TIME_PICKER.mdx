@@ -1,0 +1,105 @@
+---
+title: TIME_PICKER
+sidebar_label: TIME_PICKER 时间/日期选择器
+---
+
+> API_LEVEL `3.6` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![time_picker](/img/api/time_picker.jpg)
+
+全屏时间/日期选择器。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const time_picker = createWidget(widget.WIDGET_TIME_PICKER, Param)
+```
+
+### Param: object
+
+| 属性               | 说明                           | 是否必须 | 类型       |
+| ------------------ | ------------------------------ | -------- | ---------- |
+| `type`             | 选择器类型，`0` 时间，`1` 日期 | 是       | `number`   |
+| `style`            | 值必须为 `1`                   | 是       | `number`   |
+| `title`            | 选择器的标题                   | 否       | `string`   |
+| `done_icon`        | 完成图标的图片路径             | 否       | `string`   |
+| `font_size`        | 字体大小设置                   | 是       | `number`   |
+| `select_font_size` | 选中字体大小设置               | 是       | `number`   |
+| `initHour`         | 初始化小时，默认 12            | 否       | `number`   |
+| `initMin`          | 初始化分钟，默认 0             | 否       | `number`   |
+| `startYear`        | 开始年份，默认 1970            | 否       | `number`   |
+| `endYear`          | 结束年份，默认 2100            | 否       | `number`   |
+| `initYear`         | 初始化年，默认 2020            | 否       | `number`   |
+| `initMonth`        | 初始化月，默认 1               | 否       | `number`   |
+| `initDay`          | 初始化天，默认 1               | 否       | `number`   |
+| `picker_cb`        | picker 的回调函数              | 否       | `CallBack` |
+
+#### CallBack: function
+
+时间/日期选择器回调函数
+
+```ts
+picker_cb(picker: WIDGET, event_type: number, column: number, value_index: number): void
+```
+
+| 参数          | 说明                                             |
+| ------------- | ------------------------------------------------ |
+| `picker`      | 时间/日期选择器控件实例                          |
+| `event_type`  | 选择器回调事件类型，见 `EVENT_TYPE`              |
+| `column`      | 当前焦点列的索引（仅在 `UPDATE` 事件类型下有效） |
+| `value_index` | 当前列的当前值（仅在 `UPDATE` 事件类型下有效）   |
+
+| EVENT_TYPE 值 | 说明     |
+| ------------- | -------- |
+| `0`           | 取消选择 |
+| `1`           | 更新选择 |
+| `2`           | 选择完成 |
+
+## 属性操作
+
+此处的 `SET` 和 `GET` 代表是否支持 `widget.setProperty` 和 `widget.getProperty`
+
+| 属性名                  | SET/GET | 说明     |
+| ----------------------- | ------- | -------- |
+| `prop.type`             | -       | -        |
+| `prop.style`            | -       | -        |
+| `prop.title`            | -       | -        |
+| `prop.done_icon`        | -       | -        |
+| `prop.font_size`        | -       | -        |
+| `prop.select_font_size` | -       | -        |
+| `prop.initHour`         | -       | -        |
+| `prop.initMin`          | -       | -        |
+| `prop.startYear`        | -       | -        |
+| `prop.endYear`          | -       | -        |
+| `prop.initYear`         | -       | -        |
+| `prop.initMonth`        | -       | -        |
+| `prop.initDay`          | -       | -        |
+| `prop.picker_cb`        | -       | -        |
+| `prop.YEAR`             | `GET`   | 获取年   |
+| `prop.MONTH`            | `GET`   | 获取月   |
+| `prop.DAY`              | `GET`   | 获取日   |
+| `prop.HOUR`             | `GET`   | 获取小时 |
+| `prop.MINUTE`           | `GET`   | 获取分钟 |
+
+## 代码示例
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const time_picker = createWidget(widget.WIDGET_TIME_PICKER, {
+  type: 0, // 0: 选择时间  1: 选择日期
+  style: 1,
+  title: '时间选择器',
+  initHour: 16,
+  initMin: 55,
+  font_size: 45,
+  select_font_size: 48,
+  picker_cb: callbackFunc
+})
+
+function callbackFunc(picker, event_type, column, value_index) {
+  console.log('timePickerCb: ' + event_type, 'column: ' + column, 'value_index: ' + value_index)
+}
+```

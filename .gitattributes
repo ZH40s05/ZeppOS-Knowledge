@@ -1,0 +1,5 @@
+﻿# Upstream snapshots are vendored as-is. Do not fail whitespace checks on them.
+official/docs/zeppos-docs/** -whitespace
+official/samples/zeppos-samples/** -whitespace
+official/libraries/zml/** -whitespace
+community/libraries/zeppos-fx/** -whitespace

@@ -1,0 +1,80 @@
+---
+title: STROKE_RECT
+sidebar_label: STROKE_RECT 描边矩形
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![stroke_rect_sample](/img/api/stroke_rect_sample.jpg)
+
+描边矩形控件在填充矩形控件的基础上加入了描边。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const strokeRect = createWidget(widget.STROKE_RECT, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性        | 备注                                        | 是否必须 | 类型     | API_LEVEL |
+| ----------- | ------------------------------------------- | -------- | -------- | --------- |
+| x           | 控件 x 坐标                                 | 是       | `number` | 2.0       |
+| y           | 控件 y 坐标                                 | 是       | `number` | 2.0       |
+| w           | 控件显示宽度                                | 是       | `number` | 2.0       |
+| h           | 控件显示高度                                | 是       | `number` | 2.0       |
+| color       | 控件颜色                                    | 是       | `number` | 2.0       |
+| radius      | 矩形圆角                                    | 否       | `number` | 2.0       |
+| line_width  | 描边宽度                                    | 否       | `number` | 2.0       |
+| angle       | 旋转角度                                    | 否       | `number` | 2.0       |
+| pos_x       | 绘制区域 x offset（仅在 angle%360!=0 生效） | 否       | `number` | 4.0       |
+| pos_y       | 绘制区域 y offset（仅在 angle%360!=0 生效） | 否       | `number` | 4.0       |
+| rect_width  | 绘制区域的宽度（仅在 angle%360!=0 生效）    | 否       | `number` | 4.0       |
+| rect_height | 绘制区域的高度（仅在 angle%360!=0 生效）    | 否       | `number` | 4.0       |
+
+## 属性访问支持列表
+
+| 属性名      | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| ----------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x           | Y           | Y           | Y                             | Y                             |
+| y           | Y           | Y           | Y                             | Y                             |
+| w           | Y           | Y           | Y                             | Y                             |
+| h           | Y           | Y           | Y                             | Y                             |
+| color       | Y           | Y           | Y                             | Y                             |
+| radius      | Y           | Y           | Y                             | Y                             |
+| line_width  | Y           | Y           | Y                             | Y                             |
+| angle       | Y           | Y           | Y                             | Y                             |
+| pos_x       | N           | Y           | N                             | Y                             |
+| pos_y       | N           | Y           | N                             | Y                             |
+| rect_width  | N           | N           | N                             | Y                             |
+| rect_height | N           | N           | N                             | Y                             |
+
+## 代码示例
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    const strokeRect = createWidget(widget.STROKE_RECT, {
+      x: 125,
+      y: 125,
+      w: 230,
+      h: 150,
+      radius: 20,
+      line_width: 4,
+      color: 0xfc6950
+    })
+
+    strokeRect.addEventListener(event.CLICK_DOWN, (info) => {
+      strokeRect.setProperty(prop.MORE, {
+        y: 200
+      })
+    })
+  }
+})
+```

@@ -1,0 +1,141 @@
+---
+title: 快速上手
+sidebar_label: 快速上手
+---
+
+## 介绍
+
+Zepp OS 的开放能力包括小程序和表盘。
+
+小程序运行效果：
+
+![小程序运行效果](/img/docs/quick-start/mini_program_preview.gif)
+
+表盘运行效果：
+
+![表盘运行效果](/img/docs/quick-start/watchface_preview.gif)
+
+开发者可以在 Zepp App 中的「应用商店」和「表盘商城」中体验到更多小程序和表盘。
+
+## 开始
+
+通过本文档的引导，可以快速上手 Zepp OS 小程序和表盘开发。
+
+### 申请账号
+
+首先需要一个 Zepp 账号，通过这个账号可以管理小程序和表盘。
+
+前往 [注册 Zepp 账号](https://user.zepp.com/universalLogin/index.html#/register?project_name=open_platform&project_redirect_uri=https%3A%2F%2Fconsole.zepp.com%2F%23%2F&platform_app=com.huami.webapp)，或者使用已有的 Zepp 账号。
+
+### Zepp 应用和设备准备
+
+手机前往应用市场安装最新版本的 Zepp App。
+
+- [Android 下载地址](https://play.google.com/store/apps/details?id=com.huami.watch.hmwatchmanager&hl=en&gl=US)
+- [IOS 下载地址](https://apps.apple.com/us/app/zepp-formerly-amazfit/id1127269366)
+
+在 Zepp App 中登录 Zepp 账号，并且按照提示完成搭载 Zepp OS 设备的绑定。
+
+### 创建第一款表盘
+
+我们提供了两种构建表盘的方式。
+
+第一种在浏览器中通过 [表盘制作工具](https://watchface.zepp.com/)（可视化交互界面）在线制作表盘。
+
+![effects](/img/docs/guides/tools/watchface/overview.png)
+
+:::info
+表盘制作工具无需任何编程经验，操作和交互设计的非常友好！更多用法参考 [表盘制作工具 - 使用说明](./tools/watchface/index.md)
+:::
+
+第二种是通过 Zeus CLI 的方式创建表盘项目（与下文小程序方式相同，请参考 [创建第一款小程序](#创建第一款小程序)）。
+
+### 创建第一款小程序
+
+在这一步中，我们对小程序开发环境进行一系列配置，安装开发工具，完成第一款小程序的创建。
+
+:::tip
+此流程同样适用于表盘 Zeus CLI 的开发方式。
+:::
+
+#### 安装 Node.js 和代码编辑器
+
+请参考 [基础环境搭建](../guides/best-practice/Basic-environment-construction.mdx)。
+
+#### 安装 Zeus CLI
+
+Zeus CLI 是一款命令行工具，使用 `zeus create` 命令快速创建模版项目。
+
+安装请参考 [Zeus CLI](../guides/tools/cli/index.md)。
+
+#### 安装模拟器
+
+Zepp OS 模拟器可以帮助开发者模拟小程序的运行表现。同时可以查看小程序的日志，方便开发者调试，极大提高开发效率。
+
+![workspace.jpg](/img/simulator/workspace.jpg)
+
+安装过程请参考 [模拟器安装](../guides/tools/simulator/setup.md)。
+
+#### 使用 Zeus CLI 创建模版项目
+
+```sh
+zeus create hello-world
+```
+
+![命令行交互](/img/docs/quick-start/cli_interaction.jpg)
+
+项目创建完成，使用代码编辑器打开项目，便可看到模版项目代码。
+
+#### 编译预览
+
+参考 [模拟器 - 安装与启动](../guides/tools/simulator/setup.md)，安装并启动模拟器。
+
+```sh
+cd /Applications/simulator.app/Contents/MacOS && sudo -s ./simulator
+```
+
+:::info
+模拟器通信依赖虚拟网卡 tun/tap，其运行需要 sudo 权限，所以需要使用 sudo 命令运行模拟器
+:::
+
+启动模拟器后，参考 [模拟器 - 安装并开启「设备模拟器」](./tools/simulator/index.md#安装并开启设备模拟器) 完成「设备模拟器」的安装与启动。
+
+![download.jpg](/img/simulator/download.jpg)
+
+![device_simulator.jpg](/img/simulator/device_simulator.jpg)
+
+在模版项目 `hello-world` 根目录执行 [`zeus dev` 编译预览命令](../guides/tools/cli/index.md#zeus-dev-编译预览模拟器)，Zeus CLI 会对项目代码进行编译并通过模拟器预览。
+
+```sh
+zeus dev
+```
+
+就可以在「设备模拟器」中预览到我们的 `hello-world` 小程序。
+
+![hello world 预览](/img/docs/quick-start/hello_world.jpg)
+
+真机预览请参考 [Zeus CLI 真机预览](../guides/tools/cli/index.md#zeus-preview-编译预览真机)。
+
+---
+
+恭喜你 🎉🎉🎉，完成了第一款 Zepp OS 小程序创建。
+
+除了模版项目以外，我们还提供了一系列示例小程序和表盘供开发者参考：
+
+- [示例小程序和表盘](../samples/index.md)
+
+想了解更多关于框架、API 的详细内容，请参考：
+
+- [小程序整体架构介绍](./architecture/arc.mdx)
+- [小程序目录结构介绍](./architecture/folder-structure.mdx)
+- [小程序框架 - 设备应用](./framework/device/intro.md)
+- [小程序配置 app.json](../reference/app-json.mdx)
+
+想了解更多小程序开发调试技巧，请参考：
+
+- [小程序调试技巧](../guides/best-practice/debug.mdx)
+
+想了解小程序和表盘的发布，请参考：
+
+- [发布应用](../distribute/index.md)
+- [发布表盘](../distribute/watchface.md)

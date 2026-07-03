@@ -1,0 +1,275 @@
+---
+title: VIEW_CONTAINER
+sidebar_label: VIEW_CONTAINER 控件容器
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+<div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+  <img src={useBaseUrl('/img/api/view_container_sample.gif')} width="50%" title="vc_showcase" />
+  <img src={useBaseUrl('/img/api/swiper_vc.gif')} width="50%" title="vc_showcase2" />
+</div>
+
+`VIEW_CONTAINER` 控件容器是一个非常强大的布局控件，有如下特性：
+
+- 是一个矩形的布局容器，通过其实例方法可以创建子控件
+- 通过 `z_index` 属性控制控件容器的层叠顺序，做到垂直方向的控件层叠效果。并且可以在同一页面中可以创建多个 VIEW_CONTAINER 控件，在 Zepp OS v3 中，最多可以创建 7 个
+- VIEW_CONTAINER 控件容器本身支持滑动，可以作为可滑动容器使用
+- 与 [`setScrollMode`](../../page/setScrollMode.mdx) Swiper 模式配合时使用，实现第二张 GIF 中的复杂布局（整屏滑动，每个屏幕也可视作可滑动的独立容器）
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const viewContainer = createWidget(widget.VIEW_CONTAINER, Param)
+
+// 创建子 UI 控件
+viewContainer.createWidget(xxx, xxx)
+```
+
+## 类型
+
+## Param: object
+
+| 属性 | 备注 | 是否必须 | 类型 | API_LEVEL |
+| --- | --- | --- | --- | --- |
+| x | 控件 x 坐标，默认 `0` | 否 | `number` | 2.0 |
+| y | 控件 y 坐标，默认 `0` | 否 | `number` | 2.0 |
+| w | 控件宽度，默认屏幕宽度 | 否 | `number` | 2.0 |
+| h | 控件显示高度，默认屏幕高度 | 否 | `number` | 2.0 |
+| scroll_enable | 当 `VIEW_CONTAINER` 中的控件布局超过宽度/高度时，视为长页面。`0`: 禁止滚动，可以通过 `pos_x` 或 `pos_y` 设置容器滚动位置偏移；`1`: 允许滚动（默认） | 否 | `number` | 2.0 |
+| pos_x | 当 `VIEW_CONTAINER` 为横向长页面布局时，可以读取/设置横向偏移 | 否 | `number` | 2.0 |
+| pos_y | 当 `VIEW_CONTAINER` 为纵向长页面布局时，可以读取/设置纵向偏移 | 否 | `number` | 2.0 |
+| z_index | 当使用多个 `VIEW_CONTAINER` 控件时，可以通过此字段控制层叠关系，默认 `0` 在最底层 | 否 | `number` | 2.0 |
+| modal | 模态层开关。`0`: 禁止；`1`: 开启（默认）。开启后可用于在 `VIEW_CONTAINER` 中创建模态浮层/对话框，并阻止底层内容滚动。 | 否 | `number` | 2.0 |
+| bounce | 回弹效果，`0`: 禁止、`1`: 开启（默认） | 否 | `number` | 3.0 |
+| page | 与 [`setScrollMode`](../../page/setScrollMode.mdx) Swiper 模式配合时使用，整个屏幕使用 Swiper 模式，每一个独立的页面使用 `VIEW_CONTAINER` 实现，用于标记第几页，可以与 Swiper 模式联动 | 否 | `number` | 3.0 |
+
+### FrameParams: object
+
+| 属性    | 备注                                                               | 类型     | API_LEVEL |
+| ------- | ------------------------------------------------------------------ | -------- | --------- |
+| type    | `0`: 用户还在触碰屏幕进行拖动、`1`: 用户已经松手，处于惯性滚动效果 | `number` | 2.0       |
+| yoffset | y 轴偏移像素                                                       | `number` | 3.0       |
+
+## 属性访问支持列表
+
+| 属性名               | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x                    | Y           | Y           | Y                             | Y                             |
+| y                    | Y           | Y           | Y                             | Y                             |
+| w                    | Y           | Y           | Y                             | Y                             |
+| h                    | Y           | Y           | Y                             | Y                             |
+| pos_x                | Y           | Y           | Y                             | Y                             |
+| pos_y                | Y           | Y           | Y                             | Y                             |
+| page                 | N           | N           | N                             | Y                             |
+| modal                | N           | N           | N                             | Y                             |
+| z_index              | N           | N           | N                             | Y                             |
+| bounce               | N           | N           | N                             | Y                             |
+| scroll_enable        | N           | Y           | N                             | Y                             |
+| scroll_frame_func    | N           | N           | N                             | N                             |
+| scroll_complete_func | N           | N           | N                             | N                             |
+
+## 代码示例
+
+代码运行效果为文档顶部图片所示，创建了两个 VIEW_CONTAINER 控件
+
+```js
+import { createWidget, widget, text_style, align } from '@zos/ui'
+import { px } from '@zos/utils'
+
+const getRandomColor = () => {
+  const randomArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+
+  function getRandomFromSection(low, high) {
+    const RANDOM = Math.random()
+    const RANGE = high - low + 1
+
+    return Math.floor(RANDOM * RANGE) + low
+  }
+
+  const colorStr = Array.from({ length: 6 }).reduce((prev, curr) => {
+    const random = getRandomFromSection(0, 15)
+    return prev + randomArr[random]
+  }, '0x')
+
+  return Number(colorStr)
+}
+
+Page({
+  build() {
+    createWidget(widget.TEXT, {
+      x: px(96),
+      y: px(40),
+      w: px(288),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(36),
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      text: 'VIEW_CONTAINER'
+    })
+
+    const viewContainer = createWidget(widget.VIEW_CONTAINER, {
+      x: px(0),
+      y: px(86),
+      w: px(480),
+      h: px(400)
+    })
+
+    Array.from({ length: 5 }).forEach((_, index) => {
+      viewContainer.createWidget(widget.FILL_RECT, {
+        x: 0,
+        y: px(index * 400),
+        w: px(480),
+        h: px(400),
+        color: getRandomColor()
+      })
+
+      viewContainer.createWidget(widget.TEXT, {
+        x: px(96),
+        y: px(170) + px(index * 400),
+        w: px(288),
+        h: px(46),
+        text_size: px(36),
+        color: 0xffffff,
+        align_h: align.CENTER_H,
+        align_v: align.CENTER_V,
+        text: `INDEX: ${index}`
+      })
+    })
+
+    const viewContainerButton = createWidget(widget.VIEW_CONTAINER, {
+      x: px(0),
+      y: px(86),
+      w: px(480),
+      h: px(400),
+      z_index: 1,
+      scroll_enable: false
+    })
+
+    viewContainerButton.createWidget(widget.BUTTON, {
+      x: 0,
+      y: px(50),
+      w: px(200),
+      h: px(100),
+      text: 'Click',
+      radius: px(12),
+      normal_color: DEFAULT_COLOR,
+      press_color: DEFAULT_COLOR_TRANSPARENT,
+      click_func: () => {
+        console.log('click button')
+      }
+    })
+  }
+})
+```
+
+与 SetScrollMode Swiper 模式联合使用，效果见顶部第二张 GIF。
+
+```js
+import { createWidget, widget, align } from "@zos/ui";
+import { px } from "@zos/utils";
+import { setScrollMode, SCROLL_MODE_SWIPER_HORIZONTAL } from "@zos/page";
+
+const PAGE_WIDTH = 480;
+const PAGE_HEIGHT = 480;
+
+Page({
+  build() {
+    setScrollMode({
+      mode: SCROLL_MODE_SWIPER_HORIZONTAL,
+      options: {
+        width: px(PAGE_WIDTH),
+        count: 2,
+      },
+    });
+
+    const viewContainer1 = createWidget(widget.VIEW_CONTAINER, {
+      x: px(0),
+      y: px(0),
+      w: px(PAGE_WIDTH),
+      h: px(PAGE_HEIGHT),
+      scroll_enable: 1,
+      page: 0,
+    });
+
+    viewContainer1.createWidget(widget.TEXT, {
+      x: 0,
+      y: 0,
+      w: px(PAGE_WIDTH),
+      h: px(40),
+      text: "ViewContainer1",
+      text_size: px(26),
+      color: 0xffffff,
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+    });
+
+    viewContainer1.createWidget(widget.FILL_RECT, {
+      x: 0,
+      y: px(40),
+      w: px(PAGE_WIDTH),
+      h: px(440),
+      color: 0xF84E3F,
+    });
+
+    viewContainer1.createWidget(widget.FILL_RECT, {
+      x: 0,
+      y: px(480),
+      w: px(PAGE_WIDTH),
+      h: px(480),
+      color: 0x42A5F5,
+    });
+
+    const viewContainer2 = createWidget(widget.VIEW_CONTAINER, {
+      x: px(0),
+      y: px(0),
+      w: px(PAGE_WIDTH),
+      h: px(PAGE_HEIGHT),
+      scroll_enable: 1,
+      page: 1,
+    });
+
+    viewContainer2.createWidget(widget.TEXT, {
+      x: 0,
+      y: 0,
+      w: px(PAGE_WIDTH),
+      h: px(40),
+      text: "ViewContainer2",
+      text_size: px(26),
+      color: 0xffffff,
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+    });
+
+    viewContainer2.createWidget(widget.FILL_RECT, {
+      x: 0,
+      y: px(40),
+      w: px(PAGE_WIDTH),
+      h: px(PAGE_HEIGHT) / 2,
+      color: 0xFFA726,
+    });
+
+    viewContainer2.createWidget(widget.FILL_RECT, {
+      x: 0,
+      y: px(280),
+      w: px(PAGE_WIDTH),
+      h: px(PAGE_HEIGHT) / 2,
+      color: 0xFFD54F,
+    });
+
+    viewContainer2.createWidget(widget.FILL_RECT, {
+      x: 0,
+      y: px(40) + px(PAGE_HEIGHT),
+      w: px(PAGE_WIDTH),
+      h: px(PAGE_HEIGHT) / 2,
+      color: 0x66BB6A,
+    });
+  },
+});
+```

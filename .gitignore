@@ -1,0 +1,15 @@
+﻿# Dependencies and generated output
+**/node_modules/
+**/dist/
+**/build/
+**/.docusaurus/
+**/.cache/
+**/*.zpk
+
+# Local temporary clone workspace
+.snapshot-tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
