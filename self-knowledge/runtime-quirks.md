@@ -25,8 +25,8 @@
 - 适用范围: Zepp OS 手机端 `AppSettingsPage` 中需要用应用自有文本补偿受控 `Select.value` 首屏不显示的场景。
 - 已验证设备/固件: PaceStrategy 手机端 Settings 截图确认；手机型号、Zepp 客户端版本未记录。
 - 官方文档: 未见官方说明；实现模式与 `NormalApps/PaceStrategy/GRUN_app-side/setting.js` 的现有兼容处理交叉核对。
-- 证据: 同时传入非空 `Select.title` 并持续覆盖当前选值，会在手机容器中把原生标题、原生选值和应用遮罩一起渲染，出现大号标题与选值重叠。GRUN 将原生 `label` / `title` 置空，只在控件首次出现时覆盖解析后的当前选值，并在该控件第一次 `onChange` 后撤销遮罩。
-- 推荐做法: 为每个 Select 建立稳定且唯一的 ID；初始渲染时在相对定位容器内用 `pointerEvents: 'none'` 的绝对定位 Text 显示当前 option 名称；`onChange` 时把 ID 记入已交互集合并触发重建，之后只让原生 Select 显示值。列表中的重复控件必须包含行号或记录 ID，不能只用字段名。
+- 证据: 同时传入非空 `Select.title` 并持续覆盖当前选值，会在手机容器中把原生标题、原生选值和应用遮罩一起渲染，出现大号标题与选值重叠。只修正标题和遮罩后，三列时分秒仍会溢出容器，TextInput 的原生标签也可能与值重复。GRUN 把字段封装为两列 36 px 控件，并把原生 `label` / `title`、Select 内部背景和边框一起清空。
+- 推荐做法: 整套复用 GRUN 控件契约：父容器 `display: flex; flex-wrap: wrap; gap: 8px`；字段 `flex: 0 0 calc(50% - 4px)`；Select 高 36 px、内部 `backgroundColor: transparent`、`border: none`；TextInput 使用外部短标签并把原生 `label` 留空。为每个 Select 建立稳定且唯一的 ID；初始渲染时在相对定位容器内用 `pointerEvents: 'none'` 的绝对定位 Text 显示当前 option 名称；`onChange` 后撤销遮罩。重复控件的 ID 必须包含行号或记录 ID。
 - 限制与风险: 这是手机容器兼容补丁，不应把遮罩长期保留；原生 Select 首屏值显示问题是否在所有 Zepp 客户端版本存在仍需分版本验证。
 
 ## 新条目格式
