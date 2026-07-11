@@ -19,6 +19,16 @@
 - 推荐做法: 需要确认用户操作时，从原页面 `push` 到独立确认页，让确认页在 `build()` 中创建并显示 `createModal`；确认/取消回调里直接执行 `back()`、`exit()` 或 `replace()` 等导航，不要在跳转前主动隐藏 modal。若原页面使用 zolist 等自定义按键系统，优先用该列表对象的 `push()` 方法进入确认页，以便释放原页面按键监听。
 - 限制与风险: 该结论来自真机交互反馈，具体按键争抢表现可能随设备、固件和页面框架不同而变化；独立 modal 页如果还承载其它可见内容，是否需要在 `onDestroy()` 隐藏 modal 可按页面实际结构判断。
 
+### 2026-07-12 - Settings `Select` 首屏值遮罩不能与原生标题并存
+
+- 结论类型: `true-device confirmed`
+- 适用范围: Zepp OS 手机端 `AppSettingsPage` 中需要用应用自有文本补偿受控 `Select.value` 首屏不显示的场景。
+- 已验证设备/固件: PaceStrategy 手机端 Settings 截图确认；手机型号、Zepp 客户端版本未记录。
+- 官方文档: 未见官方说明；实现模式与 `NormalApps/PaceStrategy/GRUN_app-side/setting.js` 的现有兼容处理交叉核对。
+- 证据: 同时传入非空 `Select.title` 并持续覆盖当前选值，会在手机容器中把原生标题、原生选值和应用遮罩一起渲染，出现大号标题与选值重叠。GRUN 将原生 `label` / `title` 置空，只在控件首次出现时覆盖解析后的当前选值，并在该控件第一次 `onChange` 后撤销遮罩。
+- 推荐做法: 为每个 Select 建立稳定且唯一的 ID；初始渲染时在相对定位容器内用 `pointerEvents: 'none'` 的绝对定位 Text 显示当前 option 名称；`onChange` 时把 ID 记入已交互集合并触发重建，之后只让原生 Select 显示值。列表中的重复控件必须包含行号或记录 ID，不能只用字段名。
+- 限制与风险: 这是手机容器兼容补丁，不应把遮罩长期保留；原生 Select 首屏值显示问题是否在所有 Zepp 客户端版本存在仍需分版本验证。
+
 ## 新条目格式
 
 ```markdown
