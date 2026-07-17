@@ -42,3 +42,13 @@
 - 推荐做法:
 - 限制与风险:
 ```
+
+### 2026-07-17 - Settings H5 支持 `navigator.clipboard.writeText`
+
+- 结论类型: `true-device confirmed`
+- 适用范围: Zepp OS 手机端 `AppSettingsPage` 的用户点击回调中复制短文本或策略密钥。
+- 已验证设备 / 固件: PaceStrategy 真机反馈；设备型号、Zepp 客户端与固件版本未记录。
+- 官方文档: 未找到对应公开 Settings Clipboard API 说明。
+- 证据: PaceStrategy 分享按钮调用 `navigator.clipboard.writeText(PPS1 密钥)` 后，真机确认密钥已写入系统剪贴板。
+- 推荐做法: 在用户手势回调中尝试 `navigator.clipboard.writeText`，以成功/失败提示反馈结果；不要在窄宽 `TextInput` 中保留长密钥作为复制兜底，原生输入框会发生横向文本溢出并遮挡后续内容。
+- 限制与风险: 仅确认一次真实设备环境，尚未覆盖不同手机、Zepp 客户端版本、非手势触发或剪贴板权限被拒绝的情形；调用仍需保留失败处理。
