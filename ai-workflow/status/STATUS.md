@@ -1,13 +1,13 @@
 ﻿# 当前 Vibe Coding 状态
 
-- 状态: 已完成
-- 当前任务: 完善 zolist 振动兼容：新 API 优先、ZeppOS 2.0 bug 模式兜底，并沉淀真机结论
+- 状态: 验证通过，正在存档
+- 当前任务: 调整 zolist 焦点时机：触屏松手后切换，表冠滚动时实时切换
 - 工作目录: `C:\Users\Cafero\OneDrive - ZHAO\ZeppOS`
-- 任务边界: 不按 OS 版本硬编码；能力检测 API_LEVEL 3.6+ Action/getType，失败或缺失时走 2.0 setMode → start。旧兜底只承诺 Shimmer 实测的短中降级。
-- 正在读取: 官方新旧 Vibrator 文档、API 4.2 样例和 Shimmer 实测代码已复核完成。
-- 已修改: zolist 主源码与 example 副本现为 STRONG_SHORT 20ms 场景优先，失败或缺失时用 VIBRATOR_SCENE_DURATION 按 setMode → start 兜底；README、PROJECT 和 runtime-quirks 已记录语义、证据与风险。
-- 下一步: 等待 Balance 真机复测新场景路径及旧 API 降级路径，并补记固件/API_LEVEL。
-- 验证: 新旧分支检查通过；主源码与 example SHA-256 一致；git diff --check、npm pack --dry-run、example/zeus build 均通过。
-- 存档: zolist `71e0135`、Knowledge 业务结论 `93863e2`、根仓库业务指针 `6bcd7d9` 均已推送；本状态收口随最终指针提交同步。
+- 任务边界: 保持触屏 scroll_frame/scroll_complete 的松手落焦逻辑；表冠每次滚动后立即按屏幕中心最近条目切换焦点，并仅在索引变化时振动。停止计时器只做最终校准。
+- 已修改: 触屏继续由 scroll_complete_func 在滚动完成后落焦；表冠新增独立滚动状态，每次设置滚动位置后实时更新中心焦点，停止后仅最终校准。振动仅跟随实际焦点索引变化。
+- 修改文件: Library/Zepp-Official-List/zolist.js、example/utils/zolist.js、README.md、PROJECT.md，以及本状态/日志。
+- 下一步: 提交并推送 Knowledge 状态记录，再更新根仓库的两个子模块指针。
+- 验证: 两份源码 SHA-256 一致；node --check、git diff --check、npm pack --dry-run、example/zeus build 均通过。
+- 存档: zolist `8f28e96` 已推送 origin/main；Knowledge 状态记录和根仓库指针待同步。
 - 未纳入本轮的脏改动: 无无关业务改动；构建产物未纳入 Git。
-- 更新时间: 2026-07-19 01:55 +08:00
+- 更新时间: 2026-07-19 02:11 +08:00
