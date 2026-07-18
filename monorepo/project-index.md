@@ -89,7 +89,7 @@
 |----|--------|------|------|
 | Zepp-Adaptive-Button (`zabt`) | `@zh40s05/zepp-adaptive-button` | 物理按键 + 触屏自适应融合 | Submodule |
 | Zepp-Adaptive-UI (`zaui`) | `@zh40s05/zepp-adaptive-ui` | 多屏幕自适应缩放 (P0-P3) | Submodule |
-| ZSList | `@zh40s05/zslist` | 社区维护的 ZeppOS-style 列表控件 | Submodule (`Library/ZSList/`) |
+| Zepp Style List | `@zh40s05/zslist` | 社区维护的 ZeppOS 系统风格列表控件 | Submodule (`Library/Zepp-Style-List/`) |
 
 ## CustomTools
 

@@ -7,7 +7,7 @@
 | 分类 | 示例 | Git 策略 |
 |------|------|----------|
 | 根仓库直接追踪 | `NormalApps/`、`SecondaryWidget/`、`SportsWidget/` 中自有项目 | 根仓库提交具体文件 |
-| Git Submodule | `CustomTools/`、`Library/Zepp-Adaptive-Button/`、`Library/Zepp-Adaptive-UI/`、`Library/ZSList/`、`ZeppOS_RE/` | 子模块先提交，根仓库再提交指针 |
+| Git Submodule | `CustomTools/`、`Library/Zepp-Adaptive-Button/`、`Library/Zepp-Adaptive-UI/`、`Library/Zepp-Style-List/`、`ZeppOS_RE/` | 子模块先提交，根仓库再提交指针 |
 | 开发知识库子模块 | `ZeppOS-Knowledge/` | 官方快照、自有知识和索引；子模块先提交推送，根仓库再提交指针 |
 | 第三方代码 | `NormalApps/其它开发者/` | 默认只读；用户明确要求才改 |
 | 临时参考克隆 | `zeppos-docs/`、`zeppos-samples/` | 默认不保留；更新 Knowledge 快照时按需临时拉取，ignore，不提交 |
@@ -232,7 +232,7 @@ git add -- .gitmodules <path>
 
 | 路径 | 当前判断 |
 |------|----------|
-| `Library/ZSList/` | 已归类为 Git Submodule；按库仓库先提交、根仓库再提交指针的流程维护 |
+| `Library/Zepp-Style-List/` | 已归类为 Git Submodule；按库仓库先提交、根仓库再提交指针的流程维护 |
 | `NormalApps/其它开发者/QuickTrack/` | 第三方区内嵌套 Git 仓库；默认只读，不纳入根提交 |
 | `ZeppOS_RE/Pill Reminder*`、`ZeppOS_RE/apps/fake-ui-framework/`、`ZeppOS_RE/scripts/*.py` | 子模块内实验文件；在 `ZeppOS_RE/` 内单独决定 |
 | `package-lock.json` | 根仓库当前无依赖；无依赖 lock 可删除，提交前确认是否真的要引入根级 npm lock |

@@ -1,13 +1,13 @@
 ﻿# 当前 Vibe Coding 状态
 
-- 状态: 命名风格调研完成，等待用户确认全称
-- 当前任务: 对比 ZH40s05 现有华米/ZeppOS 开源仓库，重新评估 ZSList 的仓库全称与简介
+- 状态: Zepp Style List 迁移验证通过，正在分仓存档
+- 当前任务: 将 ZSList 的项目品牌与仓库路径迁移为 Zepp Style List / Zepp-Style-List
 - 工作目录: `C:\Users\Cafero\OneDrive - ZHAO\ZeppOS`
-- 任务边界: 本轮只读取 GitHub 仓库名称、Topics 与 Description 并提出命名建议；用户确认前不再次修改远端仓库名、代码、包名或子模块路径。
-- 已修改: 目标库改为 ZSList/zslist.js/@zh40s05/zslist；example、PaceStrategy、nearby-search import 与本地副本已同步命名；Knowledge 索引、归档说明、运行经验和项目真机说明已更新。
-- 当前边界: 旧 npm 包保留且不发布新包；GitHub 仓库、本地 origin、.gitmodules 和根 gitlink 已迁移到 ZSList/Library/ZSList。
-- 下一步: 建议首选 `ZeppOS-Style-List`；用户确认后再同步 GitHub 仓库、子模块路径、文档与元数据，并移除简介中的 `Official-style`。
-- 验证: 新路径 npm pack --dry-run、ZSList example、PaceStrategy、nearby-search 三处 zeus build、git diff --check、主源码/example 哈希一致性全部通过；目标库旧名扫描清零，消费者仅保留 formerly 迁移说明。
-- 存档: 目标库 `2f2b2aa`、Knowledge `0646734`、根仓库 `2f8aeff` 均已提交并推送；GitHub 仓库已重命名为 ZH40s05/ZSList。
-- 未纳入本轮的脏改动: 本轮只做公开仓库命名调研，没有修改业务代码或远端仓库设置；没有产生可复用 ZeppOS API/运行时知识。旧路径仍仅余一个不被 Git 跟踪的空目录。
-- 更新时间: 2026-07-19 04:09 +08:00
+- 任务边界: 项目标题、GitHub 仓库、子模块目录、README/PROJECT、根规则与 Knowledge 索引统一采用 Zepp Style List；技术标识 `zslist.js`、`@zh40s05/zslist` 和源码 API 保持不变。
+- 已修改: 对外品牌改为 Zepp Style List，仓库与子模块路径改为 Zepp-Style-List；GitHub Description、README、PROJECT、package 元数据、example、消费者来源说明、根规则与 Knowledge 索引已同步。`zslist.js`、`@zh40s05/zslist` 和 API 短标识保持不变。
+- 当前边界: 本轮不执行 npm publish；源码功能未修改，仅调整名称、描述、仓库 URL 与路径。
+- 下一步: 精确提交并推送 Knowledge 与根仓库变更，随后完成状态收口。
+- 验证: 新路径 npm pack --dry-run、example/zeus build、JSON 解析、git diff --check、主源码/example 哈希一致性全部通过；非历史文件中的 Official-style、旧 GitHub URL、Library/ZSList 路径和旧标题扫描清零。
+- 存档: 目标库 `c68c7d3` 已提交并推送；GitHub 仓库与 origin 已迁移至 ZH40s05/Zepp-Style-List；Knowledge 与根仓库待提交。
+- 未纳入本轮的脏改动: 没有无关业务改动；本轮没有产生新的可复用 ZeppOS API/运行时知识，品牌决策已写入目标 PROJECT 与运行日志。旧 Library/ZSList 空目录已安全清除。
+- 更新时间: 2026-07-19 04:22 +08:00
