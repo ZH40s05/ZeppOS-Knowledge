@@ -52,3 +52,13 @@
 - 证据: PaceStrategy 分享按钮调用 `navigator.clipboard.writeText(PPS1 密钥)` 后，真机确认密钥已写入系统剪贴板。
 - 推荐做法: 在用户手势回调中尝试 `navigator.clipboard.writeText`，以成功/失败提示反馈结果；不要在窄宽 `TextInput` 中保留长密钥作为复制兜底，原生输入框会发生横向文本溢出并遮挡后续内容。
 - 限制与风险: 仅确认一次真实设备环境，尚未覆盖不同手机、Zepp 客户端版本、非手势触发或剪贴板权限被拒绝的情形；调用仍需保留失败处理。
+
+### 2026-07-19 - `Vibrator` 按能力选择场景 API，并保留旧 mode 实测映射
+
+- 结论类型: `true-device confirmed` + project evidence
+- 适用范围: Device App 中需要同时兼容 API_LEVEL 2.0 传统振动模式和 API_LEVEL 3.6 场景 API 的触觉反馈。
+- 已验证设备 / 固件: 用户直接安装由 zolist example 编译的构建，在 Amazfit Balance 上确认调用流程；具体固件和 API_LEVEL 未记录。用户反馈模式错位问题在 Zepp OS 4 前后已被修复，但精确版本节点尚未确认。
+- 官方文档: `official/docs/zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Vibrator.mdx` 将基础 `Vibrator` API 标为 API_LEVEL 2.0，将 `start(Array<Action>)`、`getType()` 和 `STRONG_SHORT` 标为 API_LEVEL 3.6；2.0 示例明确先 `setMode()` 再 `start()`。官方资料未说明旧 mode 映射 bug 或其修复版本，API 4.2 样例仍可见 `setMode()` → `start()`。
+- 证据: Balance 上用非文档参数形式启动时没有振动，改为 `setMode(mode)` → `start()` 后能够振动，但旧 mode 的实际效果与枚举名称不符。`NormalApps/已提交/Shimmer/page/page.js` 的真机记录显示，受影响固件上 `VIBRATOR_SCENE_SHORT_STRONG` 实际为短轻，`VIBRATOR_SCENE_DURATION` 实际为短中；Shimmer 未记录能稳定产生精确短强效果的旧 mode。
+- 推荐做法: 先能力检测 `getType()`，可用时传 Action 数组调用场景 API，例如 `{ type: vibrationType.STRONG_SHORT, duration: 20 }`；接口缺失或调用失败时，才回退到文档规定的 `setMode()` → `start()`。旧路径仅使用已在目标固件实测过的错位映射，并在产品说明中标注为降级效果；不要硬编码“Zepp OS 4”作为切换阈值。
+- 限制与风险: 修复的具体系统或固件版本、Balance 测试固件和 API_LEVEL 都未记录。若新场景 API 在已修复系统上异常失败，旧路径的 `VIBRATOR_SCENE_DURATION` 可能恢复为标准长时振动，因此必须保留异常日志并继续按设备复测。
