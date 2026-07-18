@@ -1,13 +1,13 @@
 ﻿# 当前 Vibe Coding 状态
 
-- 状态: 已完成
-- 当前任务: 整理仓库，使“改动”数量归零
+- 状态: 功能已提交，正在同步仓库指针
+- 当前任务: 为 zolist 项目的表冠滚动条目切换/吸附添加短而强的振动反馈
 - 工作目录: `C:\Users\Cafero\OneDrive - ZHAO\ZeppOS`
-- 任务边界: 已归档根仓库功能改动、ZeppOS-Knowledge 状态记录、ZeppOS_RE 工具与原型，并将 Library/Zepp-Official-List 登记为子模块。
-- 正在读取: 最终递归 Git 状态。
-- 正在修改: 仅写入本次完成状态及当日日志。
-- 下一步: 提交完成状态后执行最终递归复查。
-- 验证: zeus build：PaceStrategy、nearby-search、fake-ui-framework 均通过；python -m py_compile 和 QuickJS CLI --help 通过；git diff --check 通过。
-- 存档: 已推送：ZeppOS-Knowledge dc0dcb1、ZeppOS_RE 3de5c7a4、根仓库 cd15004；将补充完成状态并更新根仓库子模块指针。
-- 未纳入本轮的脏改动: 无未提交改动；本地预览、第三方提取代码、RE 解包资源、验证缓存和构建产物均被精确忽略并保留在磁盘。
-- 更新时间: 2026-07-18 03:53 +08:00
+- 任务边界: Library/Zepp-Official-List 子模块；只对表冠吸附后的实际条目切换提供一次短强振动。
+- 正在读取: 已完成源码、官方 API、验证结果与 Git 差异审阅。
+- 正在修改: 业务文件已完成；当前仅归档状态板和子模块指针。
+- 下一步: 提交并 push ZeppOS-Knowledge 状态记录，再提交并 push 根仓库的两个子模块指针。
+- 验证: 通过：源码副本哈希一致、git diff --check、npm pack --dry-run、example/zeus build。真机振感待确认。
+- 存档: Library/Zepp-Official-List fc26bd9 已推送到 origin/main；Knowledge 与根指针待同步。
+- 未纳入本轮的脏改动: 无无关改动；构建产物未纳入 Git。
+- 更新时间: 2026-07-18 15:40 +08:00
