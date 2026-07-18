@@ -16,7 +16,7 @@
 - 已验证设备/固件: ZHAO PaceStrategy 实机反馈；nearby-search 已采用独立说明页模式。
 - 官方文档: 未见官方明确说明；这是实机交互经验。
 - 证据: PaceStrategy 在原列表页直接弹同步确认 modal 时，可能与列表/应用按键监听争抢；nearby-search 通过 `page/about`、`page/hide_info` 独立页面承载 modal，可隔离原页面按键监听。独立 modal 页在用户确认或取消后如果先执行 `modal.show(false)`，页面本身没有其他内容，会短暂露出空白黑屏。
-- 推荐做法: 需要确认用户操作时，从原页面 `push` 到独立确认页，让确认页在 `build()` 中创建并显示 `createModal`；确认/取消回调里直接执行 `back()`、`exit()` 或 `replace()` 等导航，不要在跳转前主动隐藏 modal。若原页面使用 zolist 等自定义按键系统，优先用该列表对象的 `push()` 方法进入确认页，以便释放原页面按键监听。
+- 推荐做法: 需要确认用户操作时，从原页面 `push` 到独立确认页，让确认页在 `build()` 中创建并显示 `createModal`；确认/取消回调里直接执行 `back()`、`exit()` 或 `replace()` 等导航，不要在跳转前主动隐藏 modal。若原页面使用 ZSList 等自定义按键系统，优先用该列表对象的 `push()` 方法进入确认页，以便释放原页面按键监听。
 - 限制与风险: 该结论来自真机交互反馈，具体按键争抢表现可能随设备、固件和页面框架不同而变化；独立 modal 页如果还承载其它可见内容，是否需要在 `onDestroy()` 隐藏 modal 可按页面实际结构判断。
 
 ### 2026-07-12 - Settings `Select` 首屏值遮罩不能与原生标题并存
@@ -57,7 +57,7 @@
 
 - 结论类型: `true-device confirmed` + project evidence
 - 适用范围: Device App 中需要同时兼容 API_LEVEL 2.0 传统振动模式和 API_LEVEL 3.6 场景 API 的触觉反馈。
-- 已验证设备 / 固件: 用户直接安装由 zolist example 编译的构建，在 Amazfit Balance 上确认调用流程；具体固件和 API_LEVEL 未记录。用户反馈模式错位问题在 Zepp OS 4 前后已被修复，但精确版本节点尚未确认。
+- 已验证设备 / 固件: 用户直接安装由 ZSList（当时名 zolist）example 编译的构建，在 Amazfit Balance 上确认调用流程；具体固件和 API_LEVEL 未记录。用户反馈模式错位问题在 Zepp OS 4 前后已被修复，但精确版本节点尚未确认。
 - 官方文档: `official/docs/zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Vibrator.mdx` 将基础 `Vibrator` API 标为 API_LEVEL 2.0，将 `start(Array<Action>)`、`getType()` 和 `STRONG_SHORT` 标为 API_LEVEL 3.6；2.0 示例明确先 `setMode()` 再 `start()`。官方资料未说明旧 mode 映射 bug 或其修复版本，API 4.2 样例仍可见 `setMode()` → `start()`。
 - 证据: Balance 上用非文档参数形式启动时没有振动，改为 `setMode(mode)` → `start()` 后能够振动，但旧 mode 的实际效果与枚举名称不符。`NormalApps/已提交/Shimmer/page/page.js` 的真机记录显示，受影响固件上 `VIBRATOR_SCENE_SHORT_STRONG` 实际为短轻，`VIBRATOR_SCENE_DURATION` 实际为短中；Shimmer 未记录能稳定产生精确短强效果的旧 mode。
 - 推荐做法: 先能力检测 `getType()`，可用时传 Action 数组调用场景 API，例如 `{ type: vibrationType.STRONG_SHORT, duration: 20 }`；接口缺失或调用失败时，才回退到文档规定的 `setMode()` → `start()`。旧路径仅使用已在目标固件实测过的错位映射，并在产品说明中标注为降级效果；不要硬编码“Zepp OS 4”作为切换阈值。
