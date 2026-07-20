@@ -1,6 +1,6 @@
 # 当前 Vibe Coding 状态
 
-- 状态: 已完成：依据历史信息完整版本与官方单页限制，重建 PaceStrategy 运动扩展为佳明式执行主区（分段、剩余、目标配速、进度条、领先/落后）加同屏 2×2 运行数据网格（当前配速、预计完赛、所需配速、心率/区间）。已通过 npm test、node --check、zeus build 与 git diff --check；准备存档。
+- 状态: 已完成：按用户指令将 PaceStrategy 运动扩展页面和项目决策恢复为提交 3ea4946（缩减字号层次之前）的内容。未重写 Git 历史；已通过与目标版本的一致性检查、npm test、node --check、zeus build 与 git diff --check；准备存档。
 - 当前任务:
 - 工作目录: `C:\Users\Cafero\OneDrive - ZHAO\ZeppOS`
 - 任务边界:
@@ -10,4 +10,4 @@
 - 验证:
 - 存档:
 - 未纳入本轮的脏改动:
-- 更新时间: 2026-07-21 02:50 +08:00
+- 更新时间: 2026-07-21 02:54 +08:00
