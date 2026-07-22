@@ -62,3 +62,13 @@
 - 证据: Balance 上用非文档参数形式启动时没有振动，改为 `setMode(mode)` → `start()` 后能够振动，但旧 mode 的实际效果与枚举名称不符。`NormalApps/已提交/Shimmer/page/page.js` 的真机记录显示，受影响固件上 `VIBRATOR_SCENE_SHORT_STRONG` 实际为短轻，`VIBRATOR_SCENE_DURATION` 实际为短中；Shimmer 未记录能稳定产生精确短强效果的旧 mode。
 - 推荐做法: 先能力检测 `getType()`，可用时传 Action 数组调用场景 API，例如 `{ type: vibrationType.STRONG_SHORT, duration: 20 }`；接口缺失或调用失败时，才回退到文档规定的 `setMode()` → `start()`。旧路径仅使用已在目标固件实测过的错位映射，并在产品说明中标注为降级效果；不要硬编码“Zepp OS 4”作为切换阈值。
 - 限制与风险: 修复的具体系统或固件版本、Balance 测试固件和 API_LEVEL 都未记录。若新场景 API 在已修复系统上异常失败，旧路径的 `VIBRATOR_SCENE_DURATION` 可能恢复为标准长时振动，因此必须保留异常日志并继续按设备复测。
+
+### 2026-07-23 - Workout Extension 自定义文案不要依赖 `page/i18n`
+
+- 结论类型: `true-device confirmed` + official sample evidence
+- 适用范围: API_LEVEL 3.6 Workout Extension / Data Widget 中由应用自行创建的 TEXT 文案。
+- 已验证设备 / 固件: PaceStrategy 真机反馈，两次安装分别尝试 `data-widget/i18n` 和共享 `page/i18n`，运动扩展均仍显示中文；设备型号与固件版本未记录。
+- 官方文档: `official/docs/zeppos-docs/docs/guides/workout-extension/quick-start.mdx` 仅规定用 `app.json.i18n.<locale>.data-widget.widgets[].name` 本地化扩展名称；`guides/best-practice/i18n.mdx` 将 `.po` 目录规定为普通 Device App 的 `page/i18n`。官方 Workout Extension 样例没有 `.po`，也没有在 Data Widget 中调用 `getText`。
+- 证据: `@zos/i18n getText` 本身从 API_LEVEL 2.0 起可用，但官方没有定义 Data Widget 的 `.po` 资源查找路径。PaceStrategy 的两种目录方案均能通过 `zeus build` 并生成 locale 资产，却未改变真机 Data Widget 文案，说明构建成功不能证明该运行时绑定了 catalog。
+- 推荐做法: 扩展名称继续用 `app.json.i18n`；自定义 Data Widget 文案通过 `@zos/settings getLanguage()` 读取官方数字语言码，再从随包 JS 字典选取文本。未知语言和缺失 key 建议按“英文 → key”回退。官方映射中 `0/2/3/4/6/13` 分别对应 `zh-CN/en-US/es-ES/ru-RU/fr-FR/ar-EG`。
+- 限制与风险: 官方没有明确声明 Data Widget 禁止 `.po`，因此“不加载 catalog”属于官方目录约定、官方样例和当前真机反馈共同支持的运行时结论。不同 API_LEVEL 或未来 SDK 若增加专用 Data Widget i18n 目录，应优先迁回官方机制。
