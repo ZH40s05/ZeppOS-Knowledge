@@ -67,8 +67,8 @@
 
 - 结论类型: `true-device confirmed` + official sample evidence
 - 适用范围: API_LEVEL 3.6 Workout Extension / Data Widget 中由应用自行创建的 TEXT 文案。
-- 已验证设备 / 固件: PaceStrategy 真机反馈，两次安装分别尝试 `data-widget/i18n` 和共享 `page/i18n`，运动扩展均仍显示中文；设备型号与固件版本未记录。
+- 已验证设备 / 固件: PaceStrategy 真机反馈；两次失败安装分别尝试 `data-widget/i18n` 和共享 `page/i18n`，运动扩展均仍显示中文；改为 `getLanguage()` + 随包六语 JS 字典并重新安装后，用户确认运动扩展已能正常跟随系统语言。设备型号与固件版本未记录。
 - 官方文档: `official/docs/zeppos-docs/docs/guides/workout-extension/quick-start.mdx` 仅规定用 `app.json.i18n.<locale>.data-widget.widgets[].name` 本地化扩展名称；`guides/best-practice/i18n.mdx` 将 `.po` 目录规定为普通 Device App 的 `page/i18n`。官方 Workout Extension 样例没有 `.po`，也没有在 Data Widget 中调用 `getText`。
-- 证据: `@zos/i18n getText` 本身从 API_LEVEL 2.0 起可用，但官方没有定义 Data Widget 的 `.po` 资源查找路径。PaceStrategy 的两种目录方案均能通过 `zeus build` 并生成 locale 资产，却未改变真机 Data Widget 文案，说明构建成功不能证明该运行时绑定了 catalog。
+- 证据: `@zos/i18n getText` 本身从 API_LEVEL 2.0 起可用，但官方没有定义 Data Widget 的 `.po` 资源查找路径。PaceStrategy 的两种目录方案均能通过 `zeus build` 并生成 locale 资产，却未改变真机 Data Widget 文案；commit `3053d68` 改用 `getLanguage()` 数字码选择随包六语字典后，真机确认显示正常。这说明构建成功不能证明 Data Widget 绑定了 catalog，而显式语言码方案在该设备上有效。
 - 推荐做法: 扩展名称继续用 `app.json.i18n`；自定义 Data Widget 文案通过 `@zos/settings getLanguage()` 读取官方数字语言码，再从随包 JS 字典选取文本。未知语言和缺失 key 建议按“英文 → key”回退。官方映射中 `0/2/3/4/6/13` 分别对应 `zh-CN/en-US/es-ES/ru-RU/fr-FR/ar-EG`。
 - 限制与风险: 官方没有明确声明 Data Widget 禁止 `.po`，因此“不加载 catalog”属于官方目录约定、官方样例和当前真机反馈共同支持的运行时结论。不同 API_LEVEL 或未来 SDK 若增加专用 Data Widget i18n 目录，应优先迁回官方机制。
